@@ -30,7 +30,6 @@
             border: 1px solid #222222; 
         }
         
-        /* Contenedor del Logo SVG de la empresa */
         .logo-container { 
             height: 75px; 
             margin-bottom: 25px; 
@@ -64,7 +63,7 @@
             font-weight: 400; 
         }
         
-        /* Contenedor del QR como enlace/botón */
+        /* Enlace interactivo rodeando el QR para forzar la descarga/guardado al hacer clic */
         .qr-link {
             text-decoration: none;
             display: inline-block;
@@ -89,7 +88,6 @@
             display: block;
         }
         
-        /* Pequeña indicación elegante debajo del QR */
         .qr-instruction {
             font-size: 10px;
             color: #8e8373;
@@ -138,7 +136,6 @@
             text-overflow: ellipsis; 
         }
         
-        /* Enlaces interactivos */
         .card-link {
             color: #a6a6a6;
             text-decoration: none;
@@ -175,7 +172,7 @@
     <div class="name">Mitchell Livieres</div>
     <div class="title">Foreign Trade & IT Manager</div>
     
-    <a id="download-btn" class="qr-link" title="Toca para guardar contacto">
+    <a href="Mitchell_Livieres.vcf" download="Mitchell_Livieres.vcf" class="qr-link" title="Toca para guardar contacto">
         <div class="qr-wrapper">
             <canvas id="qr"></canvas>
         </div>
@@ -219,33 +216,15 @@
 
 <script>
     window.onload = function() {
-        const name = "Mitchell Livieres";
-        const title = "Foreign Trade & IT Manager";
-        const cell = "+595985496809";
-        const email = "mitchell@LBC.com.py";
-        const ig = "labellacucinapy";
-        const mapsUrl = "https://maps.google.com/?q=PC86%2BWR+Asuncion";
-
-        // Estructura vCard 3.0 estándar
-        const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nTITLE:${title}\nTEL;TYPE=CELL:${cell}\nEMAIL;TYPE=INTERNET:${email}\nURL:https://www.instagram.com/${ig}/\nURL;TYPE=MAPS:${mapsUrl}\nADR;TYPE=WORK:;;Avda. Sacramento 975;Asunción;Central;;Paraguay\nEND:VCARD`;
-
-        // Generar el código QR visual en el canvas
+        // El script sigue dibujando el QR en pantalla para escaneos externos
         new QRious({
             element: document.getElementById('qr'),
             size: 200,
             background: '#1a1a1a',
             foreground: '#d4af37', 
             level: 'H',
-            value: vcard
+            value: "BEGIN:VCARD\nVERSION:3.0\nFN:Mitchell Livieres\nORG:La Bella Cucina\nTITLE:Foreign Trade & IT Manager\nTEL;TYPE=CELL:+595985496809\nEMAIL;TYPE=INTERNET:mitchell@LBC.com.py\nURL:https://www.instagram.com/labellacucinapy/\nADR;TYPE=WORK:;;Avda. Sacramento 975;Asunción;Central;;Paraguay\nEND:VCARD"
         });
-
-        // Convertir la vCard en un archivo descargable al hacer clic en el QR
-        const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        const downloadBtn = document.getElementById('download-btn');
-        
-        downloadBtn.href = url;
-        downloadBtn.download = "Mitchell_Livieres.vcf";
     };
 </script>
 
