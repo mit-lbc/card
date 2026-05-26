@@ -171,7 +171,7 @@
     <div class="name">Mitchell Livieres</div>
     <div class="title">Foreign Trade & IT Manager</div>
     
-    <a id="qr-anchor" href="#" onclick="descargarVCard(event)" class="qr-link" title="Toca para guardar contacto" target="_blank">
+    <a href="Mitchell_Livieres.vcf" class="qr-link" title="Toca para guardar contacto">
         <div class="qr-wrapper">
             <canvas id="qr"></canvas>
         </div>
@@ -214,6 +214,7 @@
 </div>
 
 <script>
+    // Mantener la generación del QR intacta
     const vcardData = "BEGIN:VCARD\nVERSION:3.0\nFN:Mitchell Livieres\nORG:La Bella Cucina\nTITLE:Foreign Trade & IT Manager\nTEL;TYPE=CELL:+595985496809\nEMAIL;TYPE=INTERNET:mitchell@LBC.com.py\nURL:https://www.instagram.com/labellacucinapy/\nADR;TYPE=WORK:;;Avda. Sacramento 975;Asunción;Central;;Paraguay\nEND:VCARD";
 
     window.onload = function() {
@@ -226,31 +227,6 @@
             value: vcardData
         });
     };
-
-    function descargarVCard(event) {
-        // Detectar si es un dispositivo Apple (iOS)
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-        const anchor = document.getElementById('qr-anchor');
-
-        // Codificación limpia y estándar en formato Data URI compatible
-        const dataUri = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vcardData);
-
-        if (isIOS) {
-            // En iOS, NO cancelamos el evento por defecto ni usamos 'download'.
-            // Cambiamos el href al vuelo para que Safari abra el flujo nativo de la app "Contactos".
-            anchor.href = dataUri;
-            anchor.removeAttribute('download');
-        } else {
-            // En Android y ordenadores, prevenimos el comportamiento básico y forzamos descarga física de archivo .vcf
-            event.preventDefault();
-            const link = document.createElement('a');
-            link.href = dataUri;
-            link.setAttribute('download', 'Mitchell_Livieres.vcf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    }
 </script>
 
 </body>
