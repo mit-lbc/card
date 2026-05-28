@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitchell Livieres - Tarjeta Digital</title>
+    <!-- Cargamos la librería para el QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d0d0d;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .card {
+            background-color: #141414;
+            border-radius: 25px;
+            padding: 35px 25px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+        /* El hermoso logo enmarcado en oro */
+        .logo-box {
+            border: 3px solid #d4af37;
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 0.9;
+        }
+        .logo-text-top {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d4af37;
+            letter-spacing: 1px;
+        }
+        .logo-text-bottom {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d4af37;
+            letter-spacing: 1px;
+        }
+        h1 {
+            font-size: 26px;
+            font-weight: 400;
+            margin: 0 0 8px 0;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+        .title {
+            font-size: 11px;
+            color: #8c8c8c;
+            margin: 0 0 30px 0;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .qr-card-container {
+            background-color: #1a1a1a;
+            padding: 20px;
+            display: inline-block;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+        .qr-card-container p {
+            font-size: 11px;
+            color: #666;
+            margin: 12px 0 0 0;
+            letter-spacing: 0.5px;
+        }
+        .info-container {
+            text-align: left;
+            padding: 0 10px;
+        }
+        .info-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            font-size: 14px;
+        }
+        .icon {
+            color: #d4af37;
+            margin-right: 15px;
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+        .text {
+            color: #cccccc;
+        }
+        .card-link {
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .card-link:hover {
+            color: #d4af37;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- REGRESÓ EL LOGO ORIGINAL ENMARCADO -->
+        <div class="logo-box">
+            <span class="logo-text-top">L</span>
+            <span class="logo-text-bottom">BC</span>
+        </div>
+        
+        <h1>Mitchell Livieres</h1>
+        <div class="title">Foreign Trade & IT Manager</div>
+        
+        <!-- Contenedor del QR con los puntos grandes optimizados -->
+        <div class="qr-card-container">
+            <canvas id="qr"></canvas>
+            <p>Escanea para agendar físicamente</p>
+        </div>
+        
+        <!-- Tus datos de contacto y el mapa correcto -->
+        <div class="info-container">
+            <div class="info-row">
+                <span class="icon">✆</span>
+                <span class="text"><a href="tel:+595985496809" class="card-link">+595 985 496809</a></span>
+            </div>
+            <div class="info-row">
+                <span class="icon">✉</span>
+                <span class="text"><a href="mailto:mitchell@LBC.com.py" class="card-link">mitchell@LBC.com.py</a></span>
+            </div>
+            <div class="info-row">
+                <span class="icon">🔗</span>
+                <span class="text"><a href="https://www.instagram.com/labellacucinapy/" target="_blank" class="card-link">@labellacucinapy</a></span>
+            </div>
+            <div class="info-row">
+                <span class="icon">📍</span>
+                <span class="text"><a href="https://maps.google.com/?q=La+Bella+Cucina+Avda+Sacramento+975+Asuncion" target="_blank" class="card-link">Avda. Sacramento 975, Asunción</a></span>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // QR ultra simplificado para máxima legibilidad y cuadrados grandes
+    const vcardData = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "FN:Mitchell Livieres",
+        "ORG:La Bella Cucina",
+        "TEL;TYPE=CELL:+595985496809",
+        "EMAIL;TYPE=INTERNET:mitchell@LBC.com.py",
+        "END:VCARD"
+    ].join("\n");
+
+    window.onload = function() {
+        new QRious({
+            element: document.getElementById('qr'),
+            size: 200,
+            background: '#1a1a1a',
+            foreground: '#d4af37', 
+            level: 'M', // Puntos grandes y limpios
+            value: vcardData
+        });
+    };
+</script>
+
+</body>
+</html>
