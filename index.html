@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Bella Cucina - Tarjeta Digital</title>
+    <!-- Librería para generar el QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <!-- Importamos fuentes romanas serif para calcar tu diseño de Corel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #032127; /* Fondo oscuro exterior */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .card {
+            background-color: #003840; /* El azul petróleo exacto de tu imagen de Corel */
+            border-radius: 25px;
+            padding: 45px 25px 35px 25px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+        }
+        
+        /* JERARQUÍA DE MARCA (TAL CUAL TU DISEÑO) */
+        .brand-container {
+            margin-bottom: 40px;
+        }
+        
+        .company-legal {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.75); /* Blanco sutil y pequeño */
+            letter-spacing: 2px;
+            margin: 0 0 8px 0;
+            text-transform: uppercase;
+        }
+        
+        .brand-name {
+            font-family: 'Cinzel', serif;
+            font-size: 32px; /* Destacado y elegante */
+            font-weight: 400;
+            color: #d4af37; /* El dorado corporativo que elegiste */
+            margin: 0;
+            letter-spacing: 1px;
+        }
+        
+        /* DATOS DEL TITULAR */
+        .user-name {
+            font-size: 28px;
+            font-weight: 400;
+            color: #ffffff;
+            margin: 0 0 6px 0;
+            letter-spacing: 0.5px;
+        }
+        
+        .user-title {
+            font-size: 12px;
+            color: #799a9f; /* Gris azulado sutil */
+            margin: 0 0 45px 0;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* CONTENEDOR DEL QR OPTIMIZADO */
+        .qr-card-container {
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+        
+        .qr-card-container p {
+            font-size: 13px;
+            color: #799a9f;
+            margin: 15px 0 0 0;
+            letter-spacing: 0.5px;
+        }
+        
+        /* LISTA DE CONTACTOS */
+        .info-container {
+            text-align: left;
+            padding: 0 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+        }
+        
+        .info-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .icon {
+            color: #d4af37; /* El detalle de los iconos en dorado para amarrar el diseño */
+            margin-right: 15px;
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .text {
+            color: #e6eded;
+        }
+        
+        .card-link {
+            color: #e6eded;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .card-link:hover {
+            color: #d4af37;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- MARCA CORPORATIVA REPLICADA DE COREL -->
+        <div class="brand-container">
+            <h3 class="company-legal">VGN S.A.</h3>
+            <h2 class="brand-name">La Bella Cucina</h2>
+        </div>
+        
+        <!-- DATOS DEL PERSONAL -->
+        <h1 class="user-name">Mitchell Livieres</h1>
+        <div class="user-title">Foreign Trade & IT Manager</div>
+        
+        <!-- CONTENEDOR DEL QR CON PUNTOS GRANDES -->
+        <div class="qr-card-container">
+            <canvas id="qr"></canvas>
+            <p>Escanea para agendar físicamente</p>
+        </div>
+        
+        <!-- INFORMACIÓN DE CONTACTO -->
+        <div class="info-container">
+            <div class="info-row">
+                <span class="icon">✆</span>
+                <span class="text"><a href="tel:+595985496809" class="card-link">+595 985 496809</a></span>
+            </div>
+            <div class="info-row">
+                <span class="icon">✉</span>
+                <span class="text"><a href="mailto:mitchell@LBC.com.py" class="card-link">mitchell@LBC.com.py</a></span>
+            </div>
+            <div class="info-row">
+                <span class="icon">🔗</span>
+                <span class="text"><a href="https://www.instagram.com/labellacucinapy/" target="_blank" class="card-link">@labellacucinapy</a></span>
+            </div>
+            <div class="info-row">
+                <span class="icon">📍</span>
+                <span class="text"><a href="https://maps.google.com/?q=La+Bella+Cucina+Avda+Sacramento+975+Asuncion" target="_blank" class="card-link">Avda. Sacramento 975, Asunción</a></span>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // QR con protocolo estricto vCard y patrón visual amplio (puntos grandes)
+    const vcardData = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "N:Livieres;Mitchell;;;",
+        "FN:Mitchell Livieres",
+        "ORG:La Bella Cucina",
+        "TEL;TYPE=CELL:+595985496809",
+        "EMAIL;TYPE=INTERNET:mitchell@LBC.com.py",
+        "END:VCARD"
+    ].join("\n");
+
+    window.onload = function() {
+        new QRious({
+            element: document.getElementById('qr'),
+            size: 180,
+            background: '#003840', /* Fondo idéntico a la tarjeta para que el QR flote de forma limpia */
+            foreground: '#ffffff', /* Código QR en blanco para legibilidad perfecta sobre el azul petróleo */
+            level: 'M',
+            value: vcardData
+        });
+    };
+</script>
+
+</body>
+</html>
